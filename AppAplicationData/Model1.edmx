@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PR13MOROZOVModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Sklad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naimenov" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kolichestvo" Type="int" Nullable="false" />
+          <Property Name="chena" Type="money" Nullable="false" />
+          <Property Name="StranaID" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="Komment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Strana">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="Strana" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Postavki" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Sklad_Strana">
+          <End Role="Strana" Type="Self.Strana" Multiplicity="1" />
+          <End Role="Sklad" Type="Self.Sklad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strana">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sklad">
+              <PropertyRef Name="StranaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PR13MOROZOVModelContainer">
+          <EntitySet Name="Sklad" EntityType="Self.Sklad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Strana" EntityType="Self.Strana" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Sklad_Strana" Association="Self.FK_Sklad_Strana">
+            <End Role="Strana" EntitySet="Strana" />
+            <End Role="Sklad" EntitySet="Sklad" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PR13MOROZOVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Sklad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naimenov" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kolichestvo" Type="Int32" Nullable="false" />
+          <Property Name="chena" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="StranaID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Komment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Strana" Relationship="Self.FK_Sklad_Strana" FromRole="Sklad" ToRole="Strana" />
+        </EntityType>
+        <EntityType Name="Strana">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Strana1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Postavki" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Sklad" Relationship="Self.FK_Sklad_Strana" FromRole="Strana" ToRole="Sklad" />
+        </EntityType>
+        <Association Name="FK_Sklad_Strana">
+          <End Role="Strana" Type="Self.Strana" Multiplicity="1" />
+          <End Role="Sklad" Type="Self.Sklad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strana">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sklad">
+              <PropertyRef Name="StranaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PR13MOROZOVEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Sklad" EntityType="Self.Sklad" />
+          <EntitySet Name="Strana" EntityType="Self.Strana" />
+          <AssociationSet Name="FK_Sklad_Strana" Association="Self.FK_Sklad_Strana">
+            <End Role="Strana" EntitySet="Strana" />
+            <End Role="Sklad" EntitySet="Sklad" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PR13MOROZOVModelContainer" CdmEntityContainer="PR13MOROZOVEntities">
+          <EntitySetMapping Name="Sklad">
+            <EntityTypeMapping TypeName="PR13MOROZOVModel.Sklad">
+              <MappingFragment StoreEntitySet="Sklad">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naimenov" ColumnName="naimenov" />
+                <ScalarProperty Name="kolichestvo" ColumnName="kolichestvo" />
+                <ScalarProperty Name="chena" ColumnName="chena" />
+                <ScalarProperty Name="StranaID" ColumnName="StranaID" />
+                <ScalarProperty Name="Komment" ColumnName="Komment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Strana">
+            <EntityTypeMapping TypeName="PR13MOROZOVModel.Strana">
+              <MappingFragment StoreEntitySet="Strana">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Strana1" ColumnName="Strana" />
+                <ScalarProperty Name="Postavki" ColumnName="Postavki" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
