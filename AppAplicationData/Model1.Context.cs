@@ -12,13 +12,23 @@ namespace WPF_PR_13.AppAplicationData
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class PR13MOROZOVEntities : DbContext
     {
+        private static PR13MOROZOVEntities _context;
+
         public PR13MOROZOVEntities()
             : base("name=PR13MOROZOVEntities")
         {
         }
+
+        public static PR13MOROZOVEntities GetContext()
+        {
+            if (_context == null)
+                _context = new PR13MOROZOVEntities();
+            return _context;
+        }
+     
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

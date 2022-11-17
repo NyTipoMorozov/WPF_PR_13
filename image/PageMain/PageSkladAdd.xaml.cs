@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPF_PR_13
+namespace WPF_PR_13.image.PageMain
 {
     /// <summary>
-    /// Логика взаимодействия для Page1.xaml
+    /// Логика взаимодействия для PageSkladAdd.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class PageSkladAdd : Page
     {
-        public Page1()
+        public PageSkladAdd()
         {
             InitializeComponent();
         }
