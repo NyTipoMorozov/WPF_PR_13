@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WPF_PR_13.image.PageMain"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PageSklad">
+      Title="PageSklad" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -18,7 +18,7 @@
                 <DataGridTextColumn Header="Наименование" Binding="{Binding naimenov}" Width="38*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Колиичество" Binding="{Binding kolichestvo}" Width="25*"/>
                 <DataGridTextColumn Header="Цена" Binding="{Binding chena}" Width="25*"/>
-                <DataGridTextColumn Header="Коммментарий" Binding="{Binding Komment}" Width="*"/>
+                <DataGridTextColumn Header="Коммментарий" Binding="{Binding Komment}" Width="40*"/>
                 <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -29,7 +29,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Удалить" Name="btnDel" Click="btnDel_Click" Style="{StaticResource ButtonB}"/>
+            <Button Content="Удалить" Name="btnDel" Click="btnDel_Click" Style="{StaticResource ButtonR}"/>
             <Button Content="Добавить" Name="btnAdd" Click="btnAdd_Click" Style="{StaticResource ButtonG}"/>
         </StackPanel>
     </Grid>

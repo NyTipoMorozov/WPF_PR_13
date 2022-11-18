@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_PR_13.AppAplicationData;
+using WPF_PR_13.image.PageMain;
 
 namespace WPF_PR_13
 {
@@ -26,7 +27,7 @@ namespace WPF_PR_13
             InitializeComponent();
             AppConnect.modelOdb = new PR13MOROZOVEntities();
             AppFrame.FrameMain = myFrame;
-            myFrame.Navigate(new image.PageMain.PageSklad());
+            myFrame.Navigate(new PageSklad());
         }
     }
 }
